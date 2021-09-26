@@ -14,5 +14,12 @@ const Config = new parseConfig();
 
 Config.location = './config/config.yml';
 let config = Config.parse();
-
-Logger.log(config.version);
+let client = new Discord.Client({
+    intents: [
+        Discord.Intents.FLAGS.GUILDS,
+        Discord.Intents.FLAGS.GUILD_INTEGRATIONS,
+        Discord.Intents.FLAGS.GUILD_MEMBERS,
+        Discord.Intents.FLAGS.GUILD_MESSAGES,
+        Discord.Intents.FLAGS.GUILD_PRESENCES
+    ]
+});
