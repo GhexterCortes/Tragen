@@ -7,8 +7,14 @@ const log = require('./log');
 const Logger = new log();
 
 let config = {
-    token: null,
-    support_channel: null,
+    token: '',
+    support_channel: '',
+    presence: {
+        enabled: false,
+        status: 'online',
+        type: 'PLAYING',
+        name: 'Discord'
+    },
     version: version
 }
 let configYml = yml.stringify(config);
