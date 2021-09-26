@@ -24,6 +24,11 @@ let client = new Discord.Client({
     ]
 });
 
+if(!config.token || typeof config.token !== 'string') {
+    Logger.error("Token Invalid!", "Login");
+    process.exit(0);
+}
+
 client.login(config.token);
 
 client.on('ready', function (){

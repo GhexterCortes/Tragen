@@ -1,0 +1,8 @@
+token: ""
+support_channel: ""
+presence:
+  enabled: false
+  status: online
+  type: PLAYING
+  name: Discord
+version: 0.0.1
