@@ -1,26 +1,36 @@
-const fs = require('fs');
-const utility = require('./util');
-
-const Util = new utility();
-
 function logMsg(text = '', prefix = null, level = 1){
-    if(level < 1 || level > 3) throw "Invalid log level";
+    if(level < 1 || level > 3) throw new Error("Invalid log level");
 
     switch (true){
         case (level === 1):
-            text = prefix != null ? "[INFO - " + prefix + "] " + text : "[INFO] " + text;
+            prefix = prefix != null ? "[INFO - " + prefix + "] " : "[INFO] ";
             
-            console.log(text);
+            if (typeof text == 'string' || typeof text == 'number') {
+                console.log(prefix + text);
+            } else {
+                console.log(prefix);
+                console.log(text);
+            }
             break;
         case (level === 2):
-            text = prefix != null ? "[WARN - " + prefix + "] " + text : "[WARN] " + text;
+            prefix = prefix != null ? "[WARN - " + prefix + "] " : "[WARN] ";
             
-            console.warn('\x1b[33m%s\x1b[0m', text);
+            if (typeof text == 'string' || typeof text == 'number') {
+                console.warn('\x1b[33m%s\x1b[0m', text);
+            } else {
+                console.log(prefix);
+                console.log(text);
+            }
             break;
         case (level === 3):
-            text = prefix != null ? "[ERROR - " + prefix + "] " + text : "[ERROR] " + text;
+            prefix = prefix != null ? "[ERROR - " + prefix + "] " : "[ERROR] ";
             
-            console.log('\x1b[31m%s\x1b[0m', text);
+            if (typeof text == 'string' || typeof text == 'number') {
+                console.log('\x1b[31m%s\x1b[0m', text);
+            } else {
+                console.log(prefix);
+                console.log(text);
+            }
             break;
     }
 }
